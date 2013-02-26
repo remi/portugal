@@ -1,4 +1,8 @@
 require "portugal/version"
+require "erb"
+
+require "active_record"
+require "active_support/inflector"
 
 module Portugal
   def self.configure(&blk)
@@ -30,23 +34,17 @@ module Portugal
         number > memo ? number : memo
       end
 
-      content = <<CONTENT
-class #{name.camelize} < ActiveRecord::Migration
-  def up
-  end
-
-  def down
-  end
-
-  # def change
-  # end
-end
-CONTENT
-
       migration_file = File.join(Portugal.config.migrations_path, "#{"%03d" % migration_number}_#{name.underscore}.rb")
+      content = Migration.generate_content(binding)
+
       File.open(migration_file, 'w+') { |data| data << content }
 
       puts migration_file
+    end
+
+    def self.generate_content(binding)
+      @template ||= ERB.new(File.read(File.expand_path("../portugal/templates/new_migration.rb", __FILE__)))
+      @template.result(binding)
     end
   end
 end
