@@ -47,3 +47,7 @@ rake db:rollback       # Rolls the database back to the previous version (specif
 ```
 
 Yay!
+
+## Inspiration
+
+_**Gob**: Portugal? Well, gonna live it up in ol’ South America, aren’t we, Michael?_
