@@ -15,6 +15,6 @@ module Portugal
   end
 
   def self.config
-    @config || OpenStruct.new
+    @config || OpenStruct.new(:verbose => true)
   end
 end

@@ -14,8 +14,7 @@ namespace :db do
 
   desc "Create a new migration file (specify name w/ NAME=do_something)"
   task :new_migration => :environment do
-    migration = Portugal::Migration.new(ENV["NAME"])
-    puts "Generated #{migration.filename}"
+    Portugal::Migration.new(ENV["NAME"])
   end
 end
 
