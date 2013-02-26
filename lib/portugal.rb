@@ -10,11 +10,11 @@ require 'portugal/migration'
 
 module Portugal
   def self.configure(&blk)
-    @config = OpenStruct.new
+    @config = self.config
     blk.yield(@config)
   end
 
   def self.config
-    @config
+    @config || OpenStruct.new
   end
 end

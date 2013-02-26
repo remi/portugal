@@ -20,5 +20,11 @@ describe Portugal::Migration do
 
       it("creates a new file while incrementing the migraton number") { create_migration! }
     end
+
+    context "with empty name argument" do
+      it "raises an exception" do
+        expect { Portugal::Migration.new }.to raise_error(ArgumentError)
+      end
+    end
   end
 end

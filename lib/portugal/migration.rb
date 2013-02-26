@@ -3,6 +3,10 @@ module Portugal
     attr_reader :filename
 
     def initialize(name)
+      raise ArgumentError, "You must pass a migration name (eg. rake db:new_migration NAME=do_something)" unless name
+
+      name = name.gsub(/\s/, '_')
+
       @filename = File.join(Portugal.config.migrations_path, "#{"%03d" % Migration.next_migration_number}_#{name.underscore}.rb")
       content = Migration.generate_content(binding)
 
