@@ -32,7 +32,7 @@ end
 # Change it so it works for your application
 task :environment do
   require 'bundler'
-  Bundle.require
+  Bundler.require
   ActiveRecord::Base.establish_connection({})
 end
 ```
